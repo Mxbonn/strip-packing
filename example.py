@@ -1,4 +1,4 @@
-from spprg.visualize import visualize
+from spprg import visualize
 
 
 def main():
