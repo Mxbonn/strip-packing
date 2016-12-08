@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
-import numpy
+from random import random
 
 
 def visualize(width, height, rectangles):
@@ -21,7 +21,7 @@ def visualize(width, height, rectangles):
                 (r.x, r.y),  # (x,y)
                 r.w,  # width
                 r.h,  # height
-                color=numpy.random.rand(3, 1),
+                color=(random(), random(), random()),
             )
         )
     axes.set_xlim(0, width)
