@@ -15,7 +15,7 @@ def visualize(width, height, rectangles):
             fill=False,
         )
     )
-    for r in rectangles:
+    for idx, r in enumerate(rectangles):
         axes.add_patch(
             patches.Rectangle(
                 (r.x, r.y),  # (x,y)
@@ -24,6 +24,8 @@ def visualize(width, height, rectangles):
                 color=(random(), random(), random()),
             )
         )
+        axes.text(r.x + 0.5 * r.w, r.y + 0.5 * r.h, str(idx))
     axes.set_xlim(0, width)
     axes.set_ylim(0, height)
+    plt.gca().set_aspect('equal', adjustable='box')
     plt.show()

@@ -1,17 +1,32 @@
 from copy import deepcopy
 from collections import namedtuple
 import sys
+import logging
+
+# Setup logger
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+console_logger = logging.StreamHandler()
+console_logger.setLevel(logging.DEBUG)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s', datefmt='%d/%m/%Y %H:%M:%S')
+console_logger.setFormatter(formatter)
+logger.addHandler(console_logger)
 
 Rectangle = namedtuple('Rectangle', ['x', 'y', 'w', 'h'])
 
 
 def hprg(width, rectangles):
+    logger.debug('The original array: {}'.format(rectangles))
     result = [None] * len(rectangles)
     remaining = deepcopy(rectangles)
     for idx, r in enumerate(remaining):
         if r[0] > r[1]:
             remaining[idx][0], remaining[idx][1] = remaining[idx][1], remaining[idx][0]
-    sorted_indices = sorted(range(len(remaining)), key=lambda x: remaining[x][0])
+    logger.debug('Swapped some widths and heigt with the following result: {}'.format(remaining))
+    sorted_indices = sorted(range(len(remaining)), key=lambda x: -remaining[x][0])
+    logger.debug('The sorted indices: {}'.format(sorted_indices))
+    sorted_rect = [remaining[idx] for idx in sorted_indices]
+    logger.debug('The sorted array is: {}'.format(sorted_rect))
     x, y, w, h, H = 0, 0, 0, 0, 0
     while sorted_indices:
         idx = sorted_indices.pop(0)
@@ -24,6 +39,7 @@ def hprg(width, rectangles):
             x, y, w, h, H = r[1], H, width - r[1], r[0], H + r[0]
         recursive_packing(x, y, w, h, remaining, sorted_indices, result)
         x, y = 0, H
+    logger.debug('The resulting rectangles are: {}'.format(result))
 
     return H, result
 
@@ -53,7 +69,7 @@ def recursive_packing(x, y, w, h, remaining, indices, result):
         if priority == 2:
             recursive_packing(x, y + d, w, h - d, remaining, indices, result)
         elif priority == 3:
-            recursive_packing(x + omega, y, w - omega, h)
+            recursive_packing(x + omega, y, w - omega, h, remaining, indices, result)
         elif priority == 4:
             min_w = sys.maxsize
             min_h = sys.maxsize
@@ -73,3 +89,4 @@ def recursive_packing(x, y, w, h, remaining, indices, result):
             else:
                 recursive_packing(x, y + d, omega, h - d, remaining, indices, result)
                 recursive_packing(x + omega, y, w - omega, h, remaining, indices, result)
+
