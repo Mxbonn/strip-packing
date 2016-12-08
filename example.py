@@ -1,4 +1,5 @@
-from spp import visualize, hprg
+from spp.ph import phspprg
+from spp import visualize
 from collections import namedtuple
 
 Rectangle = namedtuple('Rectangle', ['x', 'y', 'w', 'h'])
@@ -17,7 +18,7 @@ def main():
 def test():
     boxes = [[5, 3], [5, 3], [2, 14], [35, 8], [10, 20]]
     width = 10
-    height, rectangles = hprg(width, boxes)
+    height, rectangles = phspprg(width, boxes)
     visualize(width, height, rectangles)
     print("The height is: {}".format(height))
 
@@ -29,10 +30,10 @@ def nice1():
              [22.92838, 11.14775], [14.64505, 16.32301], [16.93969, 13.63546], [16.75077, 12.97378], [13.25848, 16.32301]
              ]
     width = 100
-    height, rectangles = hprg(width, boxes)
-    visualize(width, height, rectangles)
+    height, rectangles = phspprg(width, boxes)
     print("The height is: {}".format(height))
+    visualize(width, height, rectangles)
 
 
 if __name__ == "__main__":
-    test()
+    nice1()

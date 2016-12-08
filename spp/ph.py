@@ -15,7 +15,29 @@ logger.addHandler(console_logger)
 Rectangle = namedtuple('Rectangle', ['x', 'y', 'w', 'h'])
 
 
-def hprg(width, rectangles):
+def phspprg(width, rectangles):
+    """
+    The PH heuristic for the Strip Packing Problem. This is the RG variant, which means that rotations by
+    90 degrees are allowed and that there is a guillotine constraint.
+
+    Parameters
+    ----------
+    width
+        The width of the strip.
+
+    rectangles
+        List of list containing width and height of every rectangle, [[w_1, h_1], ..., [w_n,h_h]].
+        It is assumed that all rectangles can fit into the strip.
+
+    Returns
+    -------
+    height
+        The height of the strip needed to pack all the items.
+    rectangles : list of namedtuple('Rectangle', ['x', 'y', 'w', 'h'])
+        A list of rectangles, in the same order as the input list. This contains bottom left x and y coordinate and
+        the width and height (which can be flipped compared to input).
+
+    """
     logger.debug('The original array: {}'.format(rectangles))
     result = [None] * len(rectangles)
     remaining = deepcopy(rectangles)
@@ -45,6 +67,7 @@ def hprg(width, rectangles):
 
 
 def recursive_packing(x, y, w, h, remaining, indices, result):
+    """Helper function to recursively fit a certain area."""
     priority = 6
     for idx in indices:
         for D in range(0, 2):
