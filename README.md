@@ -29,7 +29,11 @@ The results can be visualized with the `visualize` method, **matplotlib** needs 
 ## Example
 `example.py` demonstrates an example, including visualization:
 ```python
-    boxes = [[5, 3], [5, 3], [2, 14], [35, 8], [10, 20]]
+    boxes = [
+        [5, 3], [5, 3], [2, 4], [30, 8], [10, 20],
+        [20, 10], [5, 5], [5, 5], [10, 10], [10, 5],
+        [6, 4], [1, 10], [8, 4], [6, 6], [20, 14]
+    ]
     width = 10
     height, rectangles = phspprg(width, boxes)
     visualize(width, height, rectangles)
@@ -39,4 +43,4 @@ The results can be visualized with the `visualize` method, **matplotlib** needs 
 
 The output of the visualization is:
 
-<img src="example.png" height="1000">
+![Output of example](example.png)
