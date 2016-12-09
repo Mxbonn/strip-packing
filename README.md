@@ -7,6 +7,8 @@ Currently the 'Priority Heuristic' is implemented for the variant in which rotat
 This is implemented in the `phspprg` method.
 More information about parameters and return values can be found in the docstrings in the source.
 
+**note:** This algorithm is heuristic which means that the outcome is possibly not the most optimal.
+
 This algorithms is based on the following paper: **A priority heuristic for the guillotine rectangular packing problem**
 ```
 @article{zhang2016priority,
