@@ -42,4 +42,5 @@ The results can be visualized with the `visualize` method, **matplotlib** needs 
 ```
 
 The output of the visualization is:
+
 ![Output of example](http://i.imgur.com/DhM96UK.png)
