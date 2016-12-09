@@ -3,7 +3,7 @@ This repository contains implementations for the strip packing problem.
 
 The strip packing problem optimizes the placing of rectangles in a strip of fixed width and variable length, such that the overall length of the strip is minimised.
 
-Currently the 'Priority Heuristic' is implemented for the variant in which rotations are allowed and cuts have to follow the guillotine constrained.
+Currently the 'Priority Heuristic' algorithm is implemented for the variant in which rotations are allowed and cuts have to follow the guillotine constraint.
 This is implemented in the `phspprg` method.
 More information about parameters and return values can be found in the docstrings in the source.
 
@@ -58,4 +58,5 @@ vs height
 <img src="http://imgur.com/WAjuk5D.png" height="600" alt="Example when sorting by height">
 
 And it can also happen that none of the two sorting options result in THE optimal solution.
+
 **Know the difference between heuristic and optimal when using this algorithm.**
