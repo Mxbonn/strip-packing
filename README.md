@@ -4,7 +4,7 @@ This repository contains implementations for the strip packing problem.
 The strip packing problem optimizes the placing of rectangles in a strip of fixed width and variable length, such that the overall length of the strip is minimised.
 
 Currently the 'Priority Heuristic' is implemented for the variant in which rotations are allowed and cuts have to follow the guillotine constrained.
-This is implemented in the `hpspprg` method.
+This is implemented in the `phspprg` method.
 More information about parameters and return values can be found in the docstrings in the source.
 
 This algorithms is based on the following paper: **A priority heuristic for the guillotine rectangular packing problem**
