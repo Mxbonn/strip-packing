@@ -34,3 +34,7 @@ The results can be visualized with the `visualize` method, **matplotlib** needs 
     print("The height is: {}".format(height))
 
 ```
+
+The output of the visualization is:
+
+<img src="example.png" height="1000">
