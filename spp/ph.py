@@ -15,7 +15,7 @@ logger.addHandler(console_logger)
 Rectangle = namedtuple('Rectangle', ['x', 'y', 'w', 'h'])
 
 
-def phspprg(width, rectangles):
+def phspprg(width, rectangles, sorting="width"):
     """
     The PH heuristic for the Strip Packing Problem. This is the RG variant, which means that rotations by
     90 degrees are allowed and that there is a guillotine constraint.
@@ -29,6 +29,10 @@ def phspprg(width, rectangles):
         List of list containing width and height of every rectangle, [[w_1, h_1], ..., [w_n,h_h]].
         It is assumed that all rectangles can fit into the strip.
 
+    sorting : string, {'width', 'height'}, default='width'
+        The heuristic uses sorting to determine which rectangles to place first.
+        By default sorting happens on the width but can be changed to height.
+
     Returns
     -------
     height
@@ -38,6 +42,12 @@ def phspprg(width, rectangles):
         the width and height (which can be flipped compared to input).
 
     """
+    if sorting not in ["width", "height" ]:
+        raise ValueError("The algorithm only supports sorting by width or height but {} was given.".format(sorting))
+    if sorting == "width":
+        wh = 0
+    else:
+        wh = 1
     logger.debug('The original array: {}'.format(rectangles))
     result = [None] * len(rectangles)
     remaining = deepcopy(rectangles)
@@ -45,7 +55,7 @@ def phspprg(width, rectangles):
         if r[0] > r[1]:
             remaining[idx][0], remaining[idx][1] = remaining[idx][1], remaining[idx][0]
     logger.debug('Swapped some widths and heigt with the following result: {}'.format(remaining))
-    sorted_indices = sorted(range(len(remaining)), key=lambda x: -remaining[x][0])
+    sorted_indices = sorted(range(len(remaining)), key=lambda x: -remaining[x][wh])
     logger.debug('The sorted indices: {}'.format(sorted_indices))
     sorted_rect = [remaining[idx] for idx in sorted_indices]
     logger.debug('The sorted array is: {}'.format(sorted_rect))
