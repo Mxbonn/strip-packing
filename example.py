@@ -6,7 +6,7 @@ Rectangle = namedtuple('Rectangle', ['x', 'y', 'w', 'h'])
 
 
 def main():
-    boxes = [[5, 3], [5, 3], [2, 14], [35, 8], [10, 20]]
+    boxes = [[5, 3], [5, 3], [2, 24], [10, 8], [10, 8], [6, 4], [1, 2], [3, 2]]
     width = 10
     height, rectangles = phspprg(width, boxes)
     visualize(width, height, rectangles)
