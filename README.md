@@ -44,3 +44,18 @@ The results can be visualized with the `visualize` method, **matplotlib** needs 
 The output of the visualization is:
 
 ![Output of example](http://i.imgur.com/DhM96UK.png)
+
+## Efficiency
+It is important to realize that the algorithm is an heuristic and will not always find the optimal result.
+
+The authors of the algorithm sort the rectangles internally by width, this is the most optimal for a lot of cases but not always.
+Sometimes it can be much better to sort by height. This can be changed by setting the parameter `sorting='height'`.
+The next outputs are an example how sorting can influence the result:
+
+width
+<img src="http://imgur.com/Fz73Kso.png" height="600" alt="Example when sorting by width">
+vs height
+<img src="http://imgur.com/WAjuk5D.png" height="600" alt="Example when sorting by height">
+
+And it can also happen that none of the two sorting options result in THE optimal solution.
+**Know the difference between heuristic and optimal when using this algorithm.**
