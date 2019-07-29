@@ -51,9 +51,6 @@ def phspprg(width, rectangles, sorting="width"):
     logger.debug('The original array: {}'.format(rectangles))
     result = [None] * len(rectangles)
     remaining = deepcopy(rectangles)
-    for idx, r in enumerate(remaining):
-        if r[0] > r[1]:
-            remaining[idx][0], remaining[idx][1] = remaining[idx][1], remaining[idx][0]
     logger.debug('Swapped some widths and heigt with the following result: {}'.format(remaining))
     sorted_indices = sorted(range(len(remaining)), key=lambda x: -remaining[x][wh])
     logger.debug('The sorted indices: {}'.format(sorted_indices))
@@ -63,12 +60,8 @@ def phspprg(width, rectangles, sorting="width"):
     while sorted_indices:
         idx = sorted_indices.pop(0)
         r = remaining[idx]
-        if r[1] > width:
-            result[idx] = Rectangle(x, y, r[0], r[1])
-            x, y, w, h, H = r[0], H, width - r[0], r[1], H + r[1]
-        else:
-            result[idx] = Rectangle(x, y, r[1], r[0])
-            x, y, w, h, H = r[1], H, width - r[1], r[0], H + r[0]
+        result[idx] = Rectangle(x, y, r[0], r[1])
+        x, y, w, h, H = r[0], H, width - r[0], r[1], H + r[1]
         recursive_packing(x, y, w, h, remaining, sorted_indices, result)
         x, y = 0, H
     logger.debug('The resulting rectangles are: {}'.format(result))
@@ -80,7 +73,7 @@ def recursive_packing(x, y, w, h, remaining, indices, result):
     """Helper function to recursively fit a certain area."""
     priority = 6
     for idx in indices:
-        for D in range(0, 2):
+        for D in range(0, 1):
             if priority > 1 and remaining[idx][(0 + D) % 2] == w and remaining[idx][(1 + D) % 2] == h:
                 priority, orientation, best = 1, D, idx
                 break

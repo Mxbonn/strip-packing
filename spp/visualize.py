@@ -45,3 +45,4 @@ def visualize(width, height, rectangles):
     axes.set_ylim(0, height)
     plt.gca().set_aspect('equal', adjustable='box')
     plt.show()
+    plt.savefig('output/visualization.png')
