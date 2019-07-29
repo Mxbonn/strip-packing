@@ -1,4 +1,4 @@
-from spp.ph import phspprg
+from spp.ph import phspprg, phsppog
 from spp import visualize
 from collections import namedtuple
 
